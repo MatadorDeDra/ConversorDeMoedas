@@ -1,15 +1,11 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
-import 'package:http/http.dart'as http; 
-
-  const request = "https://api.hgbrasil.com/finance?format=json&key=dfff5bd4";
   
 
 void main() async {
 
-  print(await getData());
+  // print(await getData());
 
   runApp(MaterialApp(
     home: Home(),
@@ -27,6 +23,7 @@ void main() async {
 }
 
 Future<Map> getData() async {
+  const request = "https://api.hgbrasil.com/finance?format=json&key=dfff5bd4";
   http.Response response = await http.get(request);
   return json.decode(response.body);
 }
@@ -158,7 +155,7 @@ Widget buildTextField(String label, String prefix, TextEditingController c, Func
         style: TextStyle(
           color: Colors.amber, fontSize: 25.0
         ),
-        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        keyboardType: TextInputType.numberWithOptions(decimal: false),
         onChanged: f,
         controller: c,
       );
